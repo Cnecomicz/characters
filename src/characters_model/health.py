@@ -13,6 +13,16 @@ class Health:
     current: int
     maximum: int
 
+    def __post_init__(self) -> None:
+        if self.maximum <= 0:
+            raise ValueError(
+                f"Maximum is {self.maximum} but must be at least 1."
+            )
+        if self.current > self.maximum:
+            raise ValueError(
+                f"Current is {self.current} but cannot exceed {self.maximum}."
+            )
+
     def damaged(self, amount: int) -> Health:
         """Return a new Health instance after taking amount damage.
 
