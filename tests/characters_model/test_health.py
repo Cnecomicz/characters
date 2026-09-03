@@ -4,7 +4,7 @@ from characters_model.health import Health
 def test_health_exists_and_can_lose_and_gain():
     health_1 = Health(current=10, maximum=10)
     assert health_1.current == 10
-    assert health_2.maximum == 10
+    assert health_1.maximum == 10
     health_2 = health_1.damaged(4)
     assert health_2.current == 6
     assert health_2.maximum == 10
