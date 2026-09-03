@@ -1,3 +1,5 @@
+from pytest import raises
+
 from characters_model.health import Health
 
 # Health tracks current and max, and can take damage and heal
@@ -11,3 +13,10 @@ def test_health_exists_and_can_lose_and_gain():
     health_3 = health_2.healed(3)
     assert health_3.current == 9
     assert health_3.maximum == 10
+
+# Maximum must be positive and current cannot exceed maximum
+def test_health_well_formedness():
+    with raises(ValueError):
+        Health(current=0, maximum=0)
+    with raises(ValueError):
+        Health(current=20, maximum=10)
