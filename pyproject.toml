@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling>=1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "characters"
+version = "0.0.1"
+authors = [
+  {name="Eric", email="eric@locallyringed.space"}
+]
+description = "An engine and library for handling Gold & Gallows characters in video games."
+readme = "README.md"
+license = "LGPL-2.1-or-later"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Games/Entertainment",
+    "Topic :: Software Development :: Libraries",
+]
+dependencies = [
+
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=9.1.1",
+  "pytest-cov>=7.1.0",
+  "pytest-testmon>=2.2.0",
+  "pytest-xdist>=3.8.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Cnecomicz/characters"
+Issues = "https://github.com/Cnecomicz/characters/issues"
+
+[project.scripts]
+
+[tool.hatch.build.targets.wheel]
+packages = [
+  "src/characters_model",
+]
