@@ -23,6 +23,25 @@ class Health:
                 f"Current is {self.current} but cannot exceed {self.maximum}."
             )
 
+    @property
+    def damage_below_zero(self) -> int:
+        """How far below 0 current has fallen.
+
+        Returns:
+            int: The distance between current and 0, or 0 if current is
+                positive.
+        """
+        return max(0, -self.current)
+
+    @property
+    def is_at_or_below_zero(self) -> bool:
+        """Whether current is less than or equal to 0.
+
+        Returns:
+            bool: True if current is non positive.
+        """
+        return self.current <= 0
+
     def damaged(self, amount: int) -> Health:
         """Return a new Health instance after taking amount damage.
 
