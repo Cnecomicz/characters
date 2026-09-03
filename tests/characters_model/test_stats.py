@@ -14,7 +14,7 @@ def test_stats_getting_values():
 def test_immutable_stats_and_leveling_up():
     base_stats = Stats(charisma=10, constitution=11, dexterity=12, intelligence=13, strength=14, wisdom=15)
     with raises(AttributeError):
-        stats.dexterity = 13
-    leveled_stats = stats.increment("str")
+        base_stats.dexterity = 13
+    leveled_stats = base_stats.increment("str")
     assert leveled_stats == Stats(charisma=10, constitution=11, dexterity=12, intelligence=13, strength=15, wisdom=15)
     assert base_stats == Stats(charisma=10, constitution=11, dexterity=12, intelligence=13, strength=14, wisdom=15)

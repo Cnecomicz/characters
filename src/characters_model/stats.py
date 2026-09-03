@@ -1,4 +1,5 @@
-from dataclasses import astuple, dataclass
+from __future__ import annotations
+from dataclasses import astuple, dataclass, replace
 
 ABBREV_ATTR_MAPPING = {
     "CHA": "charisma",
@@ -36,7 +37,7 @@ class Stats:
         try:
             attr = ABBREV_ATTR_MAPPING[abbreviation.upper()]
         except (KeyError, AttributeError):
-            raise KeyError(code) from None
+            raise KeyError(abbreviation) from None
         return getattr(self, attr)
 
     def as_tuple(self) -> tuple[int, int, int, int, int, int]:
@@ -47,3 +48,21 @@ class Stats:
                 STR, WIS) tuple of ints.
         """
         return astuple(self)
+
+    def increment(self, abbreviation: str) -> Stats:
+        """Return a copy with the declared stat increased by 1.
+
+        Args:
+            abbreviation (str): The stat to be raised.
+
+        Returns:
+            Stats: A new instance of the class with incremeneted stat.
+
+        Raises:
+            KeyError: If abbreviation is not one of the six stats.
+        """
+        try:
+            attr = ABBREV_ATTR_MAPPING[abbreviation.upper()]
+        except (KeyError, AttributeError):
+            raise KeyError(abbreviation) from None
+        return replace(self, **{attr: getattr(self, attr) + 1})
